@@ -1,3 +1,4 @@
+#include "fcntl.h"
 #include "i2c_d6t.h"
 #include "i2c_functions.h"
 //#include "ros/ros.h"
