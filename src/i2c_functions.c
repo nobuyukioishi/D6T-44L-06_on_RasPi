@@ -44,7 +44,7 @@ I2Cの通信を始めたりといったあたり部分を実装してるっぽ�
 
 
 /* some local functions */
-static int i2c_open_device();
+static int i2c_open_device(const char* i2c_bus);
 static int i2c_set_slave_address(int fh, uint8_t address);
 
 /*
