@@ -10,6 +10,8 @@
 #include <iostream>
 #include <errno.h>
 #include <sstream>
+// #include <fcntl.h>
+#include <unistd.h>
 
 class D6TException : std::exception
 {

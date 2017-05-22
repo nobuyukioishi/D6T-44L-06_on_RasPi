@@ -1,8 +1,8 @@
-#include <fcntl.h>
 #include "i2c_d6t.h"
 #include "i2c_functions.h"
 //#include "ros/ros.h"
 //#include <boost/thread.hpp>
+
 
 std::string to_string(int num) {
     std::stringstream ss;
