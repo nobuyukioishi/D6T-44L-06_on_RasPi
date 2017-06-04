@@ -23,11 +23,21 @@ CSV sample
 How to Use
 ----------
 
-After cloning this repository, you can simple compile and run this code by doing as follows.
+After cloning this repository, you can simply compile and run this code by doing as follows.
 
 ```bash
+git clone https://github.com/nobuyukioishi/Omron_D6T-44L-06_Test_with_RasPi.git
+cd Omron_D6T-44L-06_Test_with_RasPi
 cd src
 make
+```
+
+If you hasn't set up your Raspberry Pi for using the I2C port, see [here](http://www.instructables.com/id/Raspberry-Pi-I2C-Python/) to do it.
+
+You mey need to install the i2c-dev package as well with:
+
+```bash
+sudo apt-get install i2c-dev
 ```
 
 Disclaimer
@@ -36,4 +46,4 @@ Disclaimer
 I mainly reused a code by [Krisjanis Rijnieks](https://github.com/kr15h)'s https://github.com/kr15h/omron-d6t-44l-06-rpi-of-test .
 I just modified some code in main.cpp file in order to output the sensor's data into CSV file.
 
-I recommend you to refer his repository when my code doesn't work properly or if you have any question.
+I recommend you to refer his repository if my code has some problems.
