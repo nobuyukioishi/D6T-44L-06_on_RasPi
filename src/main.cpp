@@ -1,9 +1,3 @@
-/*
-main部分
-openFrameWorkでアプリを起動するところ
-(つまり，センサとのやり取りにはあまり関係ない．)
-*/
-
 #include <cstdio>
 #include <iostream>
 #include <iomanip>
@@ -27,7 +21,7 @@ int main()
 	// print current time including millisecond
 	/* std::cout << pnow->tm_year+1900 << "/" << pnow->tm_mon + 1 << "/" << pnow->tm_mday
 		<< " " << pnow->tm_hour << ":" <<pnow->tm_min << ":" << pnow->tm_sec << "." << now.tv_usec; */
-	std::ofstream ofs("Test.csv"); //ファイル出力ストリーム
+	std::ofstream ofs("Test.csv");
 	
 	int16_t *measurements = 0;
 	while(1) {
