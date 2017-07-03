@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sys/time.h>
 #include "i2c_d6t.h"
-
+#include <fluent.hpp>
 
 int main()
 {
@@ -15,30 +15,27 @@ int main()
 	
 	sensorPtr = new D6T(i2c_bus, address, iType);
 	
-	struct timeval now;
-	gettimeofday(&now, NULL);
-	struct tm *pnow = localtime(&now.tv_sec);
-	// print current time including millisecond
-	/* std::cout << pnow->tm_year+1900 << "/" << pnow->tm_mon + 1 << "/" << pnow->tm_mday
-		<< " " << pnow->tm_hour << ":" <<pnow->tm_min << ":" << pnow->tm_sec << "." << now.tv_usec; */
-	std::ofstream ofs("Test.csv");
-	
 	int16_t *measurements = 0;
 	while(1) {
+		// create fluentd logger instance
+		fluent::Logger *logger = new fluent::Logger();
+		logger->new_forward("localhost", 24224);
+		// logger->new_forward("192.168.11.181", 24224);
+		fluent::Message *msg = logger->retain_message("d6t44l06.data");
+		fluent::Message::Array *data = msg->retain_array("sensor_data");
+			
+		// get the sensor's data	
 		measurements = sensorPtr->measure();
-		gettimeofday(&now, NULL);
-		pnow = localtime(&now.tv_sec);
-		ofs << pnow->tm_year+1900 << "/" << pnow->tm_mon + 1 << "/" << pnow->tm_mday
-		<< " " << pnow->tm_hour << ":" <<pnow->tm_min << ":" << pnow->tm_sec << "." << now.tv_usec << "," <<std::flush;
 		float temp_cel[16];
 		for(int i = 0; i<15; i++) {
 			temp_cel[i] = (float) measurements[i+1]*0.1f;
 			printf("%.1f,", temp_cel[i]);
-			ofs<< std::fixed << std::setprecision(1) << temp_cel[i]<< "," <<std::flush;
+			data->push(temp_cel[i]);
 		}	
 		temp_cel[15] = (float) measurements[16]*0.1f;
+		data->push(temp_cel[15]);
 		printf("%.1f\n", temp_cel[15]);
-		ofs<< std::fixed << std::setprecision(1) << temp_cel[15]<<std::endl;	
+		logger->emit(msg);	
 		sleep(1);
 	}
 	return 0;
