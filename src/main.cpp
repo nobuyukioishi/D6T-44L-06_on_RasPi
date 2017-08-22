@@ -35,7 +35,8 @@ int main()
 		temp_cel[15] = (float) measurements[16]*0.1f;
 		data->push(temp_cel[15]);
 		printf("%.1f\n", temp_cel[15]);
-		logger->emit(msg);	
+		logger->emit(msg);
+		delete logger;
 		sleep(1);
 	}
 	return 0;
