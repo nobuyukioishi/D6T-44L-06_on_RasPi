@@ -1,3 +1,5 @@
+#include "stdio.h"
+#include "stdlib.h"
 #include "i2c_d6t.h"
 #include "i2c_functions.h"
 //#include "ros/ros.h"
@@ -67,7 +69,10 @@ int16_t* D6T::measure()
     uint8_t read_few = 0;
 
     fh = i2c_start_transaction(address, busName.c_str());
-    
+    if (fh == -1) {
+        printf("Error by Nagama");
+    	exit(1);
+    }
     while (!valid) {
 		try
 		{
