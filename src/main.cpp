@@ -14,7 +14,8 @@ int main()
 	uint8_t iType = 1; // D6T-44L-01
 	
 	sensorPtr = new D6T(i2c_bus, address, iType);
-	fluent::Logger *logger = new fluent::Logger();
+	// whileの外で作ってOK
+    fluent::Logger *logger = new fluent::Logger();
 	logger->new_forward("localhost", 24224);
 	
 	int16_t *measurements = 0;
