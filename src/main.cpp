@@ -20,7 +20,7 @@ int main()
 	int16_t *measurements = 0;
 	while(1) {
  		// create fluentd logger instance
-	  // logger->new_forward("192.168.11.181", 24224);
+    // logger->new_forward("192.168.11.181", 24224);
 		fluent::Message *msg = logger->retain_message("d6t44l06");
 		fluent::Message::Array *data = msg->retain_array("surface_temp");
 			
