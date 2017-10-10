@@ -14,13 +14,13 @@ int main()
 	uint8_t iType = 1; // D6T-44L-01
 	
 	sensorPtr = new D6T(i2c_bus, address, iType);
-  fluent::Logger *logger = new fluent::Logger();
+	fluent::Logger *logger = new fluent::Logger();
 	logger->new_forward("localhost", 24224);
 	
 	int16_t *measurements = 0;
 	while(1) {
  		// create fluentd logger instance
-    // logger->new_forward("192.168.11.181", 24224);
+		// logger->new_forward("192.168.11.181", 24224);
 		fluent::Message *msg = logger->retain_message("d6t44l06");
 		fluent::Message::Array *data = msg->retain_array("surface_temp");
 			
@@ -38,7 +38,7 @@ int main()
 		logger->emit(msg);
 	    sleep(1);
 	}
-    delete logger;
+    	delete logger;
 	return 0;
 }
 
