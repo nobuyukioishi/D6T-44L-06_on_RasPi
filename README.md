@@ -1,5 +1,5 @@
-Omron D6T-44L-06 test application
-=================================
+Testing Omron D6T-44L-06 sensor
+===============================
 
 You can check if your sensor Omron D6T-44L-06 is working properly on your Raspberry Pi.
 
