@@ -1,8 +1,7 @@
 Omron D6T-44L-06 test application
 =================================
 
-Testing the sensor on the Raspberry Pi.
-You can check if the sensor Omron D6T-44L-06 is working properly with your Raspberry Pi.
+You can check if your sensor Omron D6T-44L-06 is working properly on your Raspberry Pi.
 
 This program generates a CSV file named 'Test.csv' including each of the 4x4 grid's temperature in celsius scale and timestamp corresponding to it.
 
@@ -34,7 +33,7 @@ make
 
 If you hasn't set up your Raspberry Pi for using the I2C port, see [here](http://www.instructables.com/id/Raspberry-Pi-I2C-Python/) to do it.
 
-You mey need to install the i2c-dev package as well with:
+You may need to install the i2c-dev package as well with:
 
 ```bash
 sudo apt-get install i2c-dev
